@@ -3,26 +3,32 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
+import hdfcBankLogo from '../../public/partners/HDFC_Bank_logo_PNG1.png'
+import iciciBankLogo from '../../public/partners/icici.png'
+import axisBankLogo from '../../public/partners/axis.png'
+import sbiBankLogo from '../../public/partners/sbi.png'
+import kotakBankLogo from '../../public/partners/kotak.png'
+
 const partners = [
   {
     name: 'HDFC Bank',
-    logo: require('../../public/partners/HDFC_Bank_logo_PNG1.png'),
+    logo: hdfcBankLogo,
   },
   {
     name: 'ICICI Bank',
-    logo: require('../../public/partners/icici.png'),
+    logo: iciciBankLogo,
   },
   {
     name: 'Axis Bank',
-    logo: require('../../public/partners/axis.png'),
+    logo: axisBankLogo,
   },
   {
     name: 'SBI Bank',
-    logo: require('../../public/partners/sbi.png'),
+    logo: sbiBankLogo,
   },
   {
     name: 'Kotak Bank',
-    logo: require('../../public/partners/kotak.png'),
+    logo: kotakBankLogo,
   },
 ]
 
@@ -39,8 +45,8 @@ export default function Partners() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Our Banking Partners
           </h2>
-          <p className="text-lg text-gray-600">
-            We work with India's leading banks to get you the best deals
+          <p className="text-lg text-gray-600 text-center">
+            We&apos;ve partnered with India&apos;s leading banks to provide you with the best loan options.
           </p>
         </motion.div>
 

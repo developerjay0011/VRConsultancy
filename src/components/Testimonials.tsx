@@ -4,6 +4,26 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
+import axis from '../assets/partners/axis.png'
+import birla from '../assets/partners/birla.png'
+import bob from '../assets/partners/bob.png'
+import faircent from '../assets/partners/faircent.png'
+import hdfc from '../assets/partners/hdfc.png'
+import hero from '../assets/partners/hero.png'
+import icici from '../assets/partners/icici.png'
+import idfc from '../assets/partners/idfc.jpg'
+import iifl from '../assets/partners/iifl.png'
+import incred from '../assets/partners/incred.png'
+import indus from '../assets/partners/indus.png'
+import kotak from '../assets/partners/kotak.jpg'
+import landt from '../assets/partners/landt.png'
+import lendingkart from '../assets/partners/lendingkart.png'
+import moneyview from '../assets/partners/moneyview.png'
+import pnb from '../assets/partners/pnb.jpg'
+import sbi from '../assets/partners/sbi.png'
+import tata from '../assets/partners/tata.png'
+import yes from '../assets/partners/yes.png'
+
 const testimonials = [
   {
     name: 'Rahul Sharma',
@@ -26,25 +46,25 @@ const testimonials = [
 ]
 
 const partnerLogos = [
-  require('../../public/partners/axis.png'),
-  require('../../public/partners/birla.png'),
-  require('../../public/partners/bob.png'),
-  require('../../public/partners/faircent.png'),
-  require('../../public/partners/hdfc.png'),
-  require('../../public/partners/hero.png'),
-  require('../../public/partners/icici.png'),
-  require('../../public/partners/idfc.jpg'),
-  require('../../public/partners/iifl.png'),
-  require('../../public/partners/incred.png'),
-  require('../../public/partners/indus.png'),
-  require('../../public/partners/kotak.jpg'),
-  require('../../public/partners/landt.png'),
-  require('../../public/partners/lendingkart.png'),
-  require('../../public/partners/moneyview.png'),
-  require('../../public/partners/pnb.jpg'),
-  require('../../public/partners/sbi.png'),
-  require('../../public/partners/tata.png'),
-  require('../../public/partners/yes.png'),
+  axis,
+  birla,
+  bob,
+  faircent,
+  hdfc,
+  hero,
+  icici,
+  idfc,
+  iifl,
+  incred,
+  indus,
+  kotak,
+  landt,
+  lendingkart,
+  moneyview,
+  pnb,
+  sbi,
+  tata,
+  yes,
 ]
 
 export default function Testimonials() {
@@ -70,8 +90,8 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             What Our Customers Say
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who trust us with their financial needs
+          <p className="text-gray-600 mb-8">
+            Hear what our clients say about their experience with VR Consultancy&apos;s loan services.
           </p>
         </motion.div>
 
@@ -101,7 +121,7 @@ export default function Testimonials() {
                   </div>
                   <div className="flex-1 text-center md:text-left">
                     <p className="text-gray-600 text-lg mb-4 italic">
-                      "{testimonial.content}"
+                      &quot;{testimonial.content}&quot;
                     </p>
                     <h3 className="text-xl font-semibold text-gray-900">
                       {testimonial.name}
@@ -151,6 +171,11 @@ export default function Testimonials() {
                 />
               </motion.div>
             ))}
+          </div>
+          <div className="text-center">
+            <p className="text-gray-600 text-sm">
+              &quot;Join thousands of satisfied customers who trust us with their financial needs&quot;
+            </p>
           </div>
         </div>
       </div>

@@ -45,7 +45,7 @@ export default function HowItWorks() {
   const stepsRef = useRef<HTMLDivElement[]>([])
 
   useEffect(() => {
-    stepsRef.current.forEach((step, index) => {
+    stepsRef.current.forEach((step) => {
       if (step) {
         gsap.fromTo(
           step,
@@ -94,11 +94,11 @@ export default function HowItWorks() {
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-indigo-200 via-blue-300 to-indigo-200 transform -translate-y-1/2 hidden lg:block" />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
+            {steps.map((step) => (
               <div
-                key={index}
+                key={step.title}
                 ref={(el) => {
-                  if (el) stepsRef.current[index] = el
+                  if (el) stepsRef.current.push(el)
                 }}
                 className="relative"
               >
@@ -106,7 +106,7 @@ export default function HowItWorks() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  transition={{ delay: steps.indexOf(step) * 0.2 }}
                   className="bg-white rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-shadow duration-300"
                 >
                   {/* Image Section */}
@@ -137,7 +137,7 @@ export default function HowItWorks() {
 
                   {/* Step Number */}
                   <div className="absolute top-4 right-4 w-8 h-8 bg-primary rounded-full text-white flex items-center justify-center font-bold">
-                    {index + 1}
+                    {steps.indexOf(step) + 1}
                   </div>
                 </motion.div>
               </div>

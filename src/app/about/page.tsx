@@ -73,7 +73,7 @@ export default function AboutPage() {
               <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
               <div className="h-1 w-20 bg-primary rounded-full"></div>
               <p className="text-gray-600">
-                At VR Consultancy, we're committed to revolutionizing the lending industry by making financial services more accessible, transparent, and efficient. Our mission is to empower individuals and businesses with the financial tools they need to succeed.
+                At VR Consultancy, we&apos;re committed to revolutionizing the lending industry by making financial services more accessible, transparent, and efficient. Our mission is to empower individuals and businesses with the financial tools they need to succeed.
               </p>
               <div className="space-y-4">
                 {[
@@ -126,7 +126,7 @@ export default function AboutPage() {
               transition={{ delay: 0.2 }}
               className="text-gray-600"
             >
-              These core values guide everything we do at Gruhfin
+              These core values guide everything we do at VR Consultancy
             </motion.p>
           </div>
 
@@ -188,7 +188,7 @@ export default function AboutPage() {
               transition={{ delay: 0.2 }}
               className="text-gray-600"
             >
-              Meet the experts behind Gruhfin's success
+              We&apos;re proud to have helped thousands of individuals and businesses achieve their financial goals.
             </motion.p>
           </div>
 

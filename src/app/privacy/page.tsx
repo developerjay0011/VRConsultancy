@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
               >
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
                 <p className="text-gray-600 mb-4">
-                  This Privacy Policy outlines how VR Consultancy (referred to as "We," "Our," or "Us" as appropriate) manages the collection, use, processing, storage, retrieval, disclosure, or transfer of your information.
+                  This Privacy Policy outlines how VR Consultancy (referred to as &quot;We,&quot; &quot;Our,&quot; or &quot;Us&quot; as appropriate) manages the collection, use, processing, storage, retrieval, disclosure, or transfer of your information.
                 </p>
                 <p className="text-gray-600">
                   This includes personal information and sensitive personal data or information that VR Consultancy may receive when you access, interact with, or use our website, associated Android and iOS mobile applications, mobile site, or any other medium, including our call-center facility, through which we offer Our Services.
@@ -156,7 +156,7 @@ export default function PrivacyPolicy() {
               >
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Updates to Privacy Policy</h2>
                 <p className="text-gray-600">
-                  We may update this Privacy Policy from time to time. The updated version will be indicated by an updated "Last Updated" date and the updated version will be effective as soon as it is accessible.
+                  We may update this Privacy Policy from time to time. The updated version will be indicated by an updated &quot;Last Updated&quot; date and the updated version will be effective as soon as it is accessible.
                 </p>
               </motion.div>
             </div>

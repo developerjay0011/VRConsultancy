@@ -1,33 +1,28 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import dynamic from 'next/dynamic'
-
-const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
 export default function LoanCalculator() {
   const [loanAmount, setLoanAmount] = useState(500000)
   const [tenure, setTenure] = useState(24)
   const [interestRate, setInterestRate] = useState(10.5)
-  const [emi, setEmi] = useState(0)
   const [isCalculating, setIsCalculating] = useState(false)
+  const [emi, setEmi] = useState(0)
+
+  const calculateEMI = useCallback(() => {
+    setIsCalculating(true)
+    const principal = loanAmount
+    const rate = interestRate / 12 / 100
+    const time = tenure * 12
+    const emi = (principal * rate * Math.pow(1 + rate, time)) / (Math.pow(1 + rate, time) - 1)
+    setEmi(Math.round(emi))
+    setIsCalculating(false)
+  }, [loanAmount, interestRate, tenure])
 
   useEffect(() => {
     calculateEMI()
-  }, [loanAmount, tenure, interestRate])
-
-  const calculateEMI = () => {
-    setIsCalculating(true)
-    setTimeout(() => {
-      const p = loanAmount
-      const r = interestRate / 12 / 100
-      const n = tenure
-      const emi = p * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1)
-      setEmi(Math.round(emi))
-      setIsCalculating(false)
-    }, 500)
-  }
+  }, [calculateEMI])
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {

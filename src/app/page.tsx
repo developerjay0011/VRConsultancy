@@ -1,6 +1,5 @@
 "use client"
 
-import dynamic from 'next/dynamic'
 import Navigation from '@/components/Navigation'
 import HeroSection from '@/components/HeroSection'
 import LoanCalculator from '@/components/LoanCalculator'

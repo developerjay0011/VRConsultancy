@@ -30,10 +30,11 @@ export default function LoanInquiryForm() {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = handleSubmit(async (formData) => {
     setIsSubmitting(true)
     try {
-      // Simulate API call
+      // Simulate API call with form data
+      console.log('Submitting form data:', formData)
       await new Promise(resolve => setTimeout(resolve, 2000))
       setIsSuccess(true)
       reset()
@@ -42,7 +43,7 @@ export default function LoanInquiryForm() {
     } finally {
       setIsSubmitting(false)
     }
-  }
+  })
 
   if (isSuccess) {
     return (
@@ -65,7 +66,7 @@ export default function LoanInquiryForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={onSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Personal Information */}
         <div>
