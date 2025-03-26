@@ -2,14 +2,13 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Lottie from 'lottie-react'
 import successAnimation from '@/animations/success-animation.json'
-import { submitLoanInquiry, LoanInquiryData } from '@/services/api'
+import { submitLoanInquiry } from '@/services/api'
 
 const loanTypes = {
   'personal-loan': {
@@ -18,7 +17,7 @@ const loanTypes = {
     maxAmount: '40 Lakhs',
     tenure: '96 months',
     requiredDocuments: [
-      'KYC documents & Aadhaar/ passport/ voter\'s ID/ driving license/ letter from NPR/ NREGA job card',
+      'KYC documents & Aadhaar/ passport/ voter&apos;s ID/ driving license/ letter from NPR/ NREGA job card',
       'PAN card',
       'Employee ID card',
       'Salary slips of the last 3 months',

@@ -1,9 +1,11 @@
 "use client"
 
-import Navigation from '@/components/Navigation'
-import LoanInquiryForm from '@/components/LoanInquiry/LoanInquiryForm'
-import LoanOffers from '@/components/LoanInquiry/LoanOffers'
-import CTASection from '@/components/CTASection'
+import dynamic from 'next/dynamic'
+
+const Navigation = dynamic(() => import('@/components/Navigation'), { ssr: false })
+const LoanInquiryForm = dynamic(() => import('@/components/LoanInquiry/LoanInquiryForm'), { ssr: false })
+const LoanOffers = dynamic(() => import('@/components/LoanInquiry/LoanOffers'), { ssr: false })
+const CTASection = dynamic(() => import('@/components/CTASection'), { ssr: false })
 
 export default function LoanInquiryPage() {
   return (

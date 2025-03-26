@@ -1,10 +1,12 @@
 "use client"
 
-import Navigation from '@/components/Navigation'
-import ServiceDetails from '@/components/ServiceDetails'
-import CTASection from '@/components/CTASection'
+import dynamic from 'next/dynamic'
 
-export default function PersonalLoanPage() {
+const Navigation = dynamic(() => import('@/components/Navigation'), { ssr: false })
+const ServiceDetails = dynamic(() => import('@/components/ServiceDetails'), { ssr: false })
+const CTASection = dynamic(() => import('@/components/CTASection'), { ssr: false })
+
+export default function BusinessLoanPage() {
   return (
     <main>
       <Navigation />

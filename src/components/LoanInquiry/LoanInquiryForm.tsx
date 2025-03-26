@@ -4,11 +4,10 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import dynamic from 'next/dynamic'
 import Lottie from 'lottie-react'
 import successAnimation from '@/animations/success-animation.json'
 import loanApplicationAnimation from '@/animations/loan-application.json'
-import { submitLoanInquiry, LoanInquiryData } from '@/services/api'
+import { submitLoanInquiry } from '@/services/api'
 
 const schema = yup.object({
   fullName: yup.string().required('Full name is required'),
@@ -74,7 +73,7 @@ export default function LoanInquiryForm() {
             Quick Loan Application
           </h2>
           <p className="text-gray-600">
-            Fill out the form below to apply for a loan. We'll review your
+            Fill out the form below to apply for a loan. We&apos;ll review your
             application and get back to you shortly.
           </p>
         </div>
