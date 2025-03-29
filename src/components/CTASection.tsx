@@ -205,7 +205,7 @@ export default function CTASection() {
           </div>
 
           {/* Contact Form */}
-          <div className="md:col-span-5 bg-white/10 backdrop-blur-sm rounded-xl p-6">
+          <div id="contact" className="md:col-span-5 bg-white/10 backdrop-blur-sm rounded-xl p-6">
             <h3 className="text-lg font-semibold text-white mb-6">Contact Us</h3>
             {submitStatus.type && (
               <div
