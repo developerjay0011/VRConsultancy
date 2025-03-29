@@ -7,12 +7,12 @@ export interface LoanInquiryData {
   email: string;
   phone: string;
   loanAmount: number;
-  loanType: 'personal' | 'business' | 'home';
+  loanType: 'personal' | 'home' | 'business' | 'project' | 'securities' | 'msme' | 'education' | 'nri' | 'affordable' | 'transfer' | 'property' | 'working-capital';
   employmentType: 'salaried' | 'business';
   monthlyIncome: number;
 }
 
-export const submitLoanInquiry = async (data: LoanInquiryData) => {
+export async function submitLoanInquiry(data: LoanInquiryData): Promise<void> {
   try {
     const response = await axios.post(`${API_BASE_URL}/inquiries`, data);
     return response.data;

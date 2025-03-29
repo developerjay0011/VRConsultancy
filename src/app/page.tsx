@@ -1,13 +1,15 @@
 "use client"
 
-import Navigation from '@/components/Navigation'
-import HeroSection from '@/components/HeroSection'
-import LoanCalculator from '@/components/LoanCalculator'
-import WhyChooseUs from '@/components/WhyChooseUs'
-import HowItWorks from '@/components/HowItWorks'
-import OurServices from '@/components/OurServices'
-import Testimonials from '@/components/Testimonials'
-import CTASection from '@/components/CTASection'
+import dynamic from 'next/dynamic'
+
+const Navigation = dynamic(() => import('@/components/Navigation'), { ssr: false })
+const HeroSection = dynamic(() => import('@/components/HeroSection'), { ssr: false })
+const LoanCalculator = dynamic(() => import('@/components/LoanCalculator'), { ssr: false })
+const WhyChooseUs = dynamic(() => import('@/components/WhyChooseUs'), { ssr: false })
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'), { ssr: false })
+const OurServices = dynamic(() => import('@/components/OurServices'), { ssr: false })
+const Testimonials = dynamic(() => import('@/components/Testimonials'), { ssr: false })
+const CTASection = dynamic(() => import('@/components/CTASection'), { ssr: false })
 
 export default function Home() {
   return (

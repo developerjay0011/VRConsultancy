@@ -10,7 +10,7 @@ const HomeIcon = () => (
   </svg>
 )
 
-const SecuritiesIcon = () => (
+const SecurityIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M9 17V15M12 17V13M15 17V11M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H17C18.1046 3 19 3.89543 19 5V19C19 20.1046 18.1046 21 17 21ZM13 7H16M13 7V10M13 7L16 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
@@ -79,68 +79,76 @@ const PersonalIcon = () => (
 const services = [
   {
     title: 'Home Loan',
-    description: 'Get your dream home with our flexible home loan options.',
+    description: 'Make your dream home a reality with our flexible home loan options. Low interest rates, quick approval, and minimal documentation.',
     Icon: HomeIcon,
-    href: '/services/home-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'Personal Loan',
-    description: 'Quick personal loans for your immediate needs.',
+    description: 'Quick personal loans with minimal documentation. Get instant approval for your immediate financial needs with competitive interest rates.',
     Icon: PersonalIcon,
-    href: '/services/personal-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'Business Loan',
-    description: 'Grow your business with our financing solutions.',
+    description: 'Empower your business growth with our hassle-free business loans. Quick disbursement and flexible repayment options available.',
     Icon: BusinessIcon,
-    href: '/services/business-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'Project Loan',
-    description: 'Fund your projects with competitive interest rates.',
+    description: 'Fund your large-scale projects with our tailored financing solutions. Competitive rates and extended tenure options for project completion.',
     Icon: ProjectIcon,
-    href: '/services/project-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'Loan Against Securities',
-    Icon: SecuritiesIcon,
-    href: '/services/loan-against-securities'
+    description: 'Unlock the value of your investments. Get quick loans against shares, mutual funds, and other securities with attractive interest rates.',
+    Icon: SecurityIcon,
+    href: '/services/Inquiry'
   },
   {
     title: 'MSME Loan',
+    description: 'Special loan schemes for Micro, Small & Medium Enterprises. Get collateral-free business loans with government-backed support.',
     Icon: MSMEIcon,
-    href: '/services/msme-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'Education Loan',
+    description: 'Invest in your future with our education loans. Cover tuition fees, living expenses, and study materials with flexible repayment terms.',
     Icon: EducationIcon,
-    href: '/services/education-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'NRI Home Loan',
+    description: 'Special home loan options for NRIs. Buy your dream property in India with simplified documentation and competitive interest rates.',
     Icon: NRIIcon,
-    href: '/services/nri-home-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'Affordable Home Loan',
+    description: 'Make affordable housing accessible with our special home loan schemes. Lower interest rates and extended tenure for budget-friendly EMIs.',
     Icon: AffordableIcon,
-    href: '/services/affordable-home-loan'
+    href: '/services/Inquiry'
   },
   {
     title: 'Home Loan Transfer',
+    description: 'Switch your existing home loan to us for better rates. Save money with lower EMIs and get a top-up loan if needed.',
     Icon: TransferIcon,
-    href: '/services/home-loan-transfer'
+    href: '/services/Inquiry'
   },
   {
     title: 'Loan Against Property',
+    description: 'Leverage your property value with our LAP options. Get higher loan amounts with longer repayment tenure at attractive interest rates.',
     Icon: PropertyIcon,
-    href: '/services/loan-against-property'
+    href: '/services/Inquiry'
   },
   {
     title: 'Working Capital CC/OD',
+    description: 'Maintain healthy cash flow with our working capital solutions. Access funds as needed with flexible Cash Credit and Overdraft facilities.',
     Icon: WorkingCapitalIcon,
-    href: '/services/working-capital-cc-od'
-  },
+    href: '/services/Inquiry'
+  }
 ]
 
 export default function OurServices() {
@@ -177,7 +185,7 @@ export default function OurServices() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              onClick={() => router.push(service.href)}
+              onClick={() => router.push(`/services/Inquiry?type=${encodeURIComponent(service.title)}`)}
               className="group relative bg-white rounded-lg border border-gray-100 hover:border-primary/10 hover:shadow transition-all duration-300 cursor-pointer"
             >
               <div className="p-4 flex items-center gap-3">

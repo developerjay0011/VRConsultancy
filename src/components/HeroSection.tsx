@@ -122,6 +122,9 @@ export default function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  document.getElementById('loans')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="group px-8 py-4 bg-white text-primary rounded-lg font-semibold shadow-lg hover:bg-gray-50 transition-all duration-300 relative overflow-hidden"
               >
                 <span className="relative z-10">Calculate EMI</span>
@@ -220,7 +223,7 @@ export default function HeroSection() {
             </div>
 
             {/* Floating Stats Cards */}
-            <motion.div
+            {/* <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -259,7 +262,7 @@ export default function HeroSection() {
                   </div>
                 </div>
               </motion.div>
-            </motion.div>
+            </motion.div> */}
 
             {/* Floating Success Card */}
             <motion.div

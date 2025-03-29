@@ -11,7 +11,9 @@ import {
   CheckBadgeIcon,
   BanknotesIcon
 } from '@heroicons/react/24/outline'
-
+import apply from '../assets/howitworks/apply-online.jpg'
+import approval from '../assets/howitworks/instant-approval.webp'
+import disbursement from '../assets/howitworks/disbrust.webp'
 gsap.registerPlugin(ScrollTrigger)
 
 const steps = [
@@ -19,7 +21,7 @@ const steps = [
     title: 'Apply Online',
     description: 'Fill out our simple online application form with your basic details',
     icon: ClipboardDocumentCheckIcon,
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80',
+    image: apply,
   },
   {
     title: 'Document Verification',
@@ -31,13 +33,13 @@ const steps = [
     title: 'Instant Approval',
     description: 'Get instant approval based on your eligibility criteria',
     icon: CheckBadgeIcon,
-    image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=600&q=80',
+    image: approval,
   },
   {
     title: 'Quick Disbursement',
     description: 'Receive funds directly in your bank account within 24 hours',
     icon: BanknotesIcon,
-    image: 'https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&w=600&q=80',
+    image: disbursement,
   },
 ]
 

@@ -142,7 +142,7 @@ export default function PrivacyPolicy() {
                     <strong>VR Consultancy</strong><br />
                     Email: info@vrconsultancy.com<br />
                     Phone: +91 98797 99109<br />
-                    Address: 123 Main Street, City, State, PIN Code
+                    Address: 109,110 SHYAM ARCADE NEAR MODI HOSPITAL, KADODARA, SURAT - 394327
                   </p>
                 </div>
               </motion.div>

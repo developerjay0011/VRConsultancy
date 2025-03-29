@@ -10,60 +10,185 @@ import Lottie from 'lottie-react'
 import successAnimation from '@/animations/success-animation.json'
 import { submitLoanInquiry } from '@/services/api'
 
+interface ServiceDetailsProps {
+  loanType?: keyof typeof loanTypes
+}
+
 const loanTypes = {
-  'personal-loan': {
+  'Personal Loan': {
     title: 'Personal Loan',
-    minAmount: '1 Lakh',
-    maxAmount: '40 Lakhs',
+    minAmount: '₹50,000',
+    maxAmount: '₹50,00,000',
     tenure: '96 months',
     requiredDocuments: [
-      'KYC documents & Aadhaar/ passport/ voter&apos;s ID/ driving license/ letter from NPR/ NREGA job card',
-      'PAN card',
-      'Employee ID card',
-      'Salary slips of the last 3 months',
-      'Bank account statements of the previous 3 months',
+      'Identity proof',
+      'Address proof',
+      'Income documents',
+      'Bank statements'
     ]
   },
-  'home-loan': {
+  'Home Loan': {
     title: 'Home Loan',
-    minAmount: '5 Lakhs',
-    maxAmount: '10 Crores',
+    minAmount: '₹5,00,000',
+    maxAmount: '₹5,00,00,000',
     tenure: '360 months',
     requiredDocuments: [
-      'KYC documents & Aadhaar',
-      'PAN card',
-      'Income proof documents',
+      'Identity proof',
+      'Address proof',
+      'Income documents',
       'Property documents',
-      'Bank statements of last 6 months',
+      'Bank statements'
     ]
   },
-  'business-loan': {
+  'Business Loan': {
     title: 'Business Loan',
-    minAmount: '2 Lakhs',
-    maxAmount: '50 Lakhs',
-    tenure: '60 months',
+    minAmount: '₹2,00,000',
+    maxAmount: '₹2,00,00,000',
+    tenure: '120 months',
     requiredDocuments: [
-      'KYC documents & Aadhaar',
-      'PAN card & GST registration',
-      'Business registration documents',
-      'Income tax returns - 2 years',
-      'Bank statements of last 12 months',
+      'Business registration',
+      'GST returns',
+      'Bank statements',
+      'Financial statements',
+      'KYC documents'
     ]
   },
-  'project-loan': {
+  'Project Loan': {
     title: 'Project Loan',
-    minAmount: '50 Lakhs',
-    maxAmount: '25 Crores',
+    minAmount: '₹50,00,000',
+    maxAmount: '₹25,00,00,000',
     tenure: '180 months',
     requiredDocuments: [
-      'Project proposal & DPR',
-      'Company registration documents',
-      'Past project details',
-      'Financial statements - 3 years',
-      'Collateral documents',
+      'Project proposal',
+      'DPR (Detailed Project Report)',
+      'Company registration',
+      'Financial projections',
+      'Collateral documents'
+    ]
+  },
+  'Loan Against Securities': {
+    title: 'Loan Against Securities',
+    minAmount: '₹1,00,000',
+    maxAmount: '₹10,00,00,000',
+    tenure: '36 months',
+    requiredDocuments: [
+      'Demat account statement',
+      'KYC documents',
+      'Income proof',
+      'Bank statements',
+      'Securities pledge form'
+    ]
+  },
+  'MSME Loan': {
+    title: 'MSME Loan',
+    minAmount: '₹1,00,000',
+    maxAmount: '₹5,00,00,000',
+    tenure: '84 months',
+    requiredDocuments: [
+      'MSME registration',
+      'GST returns',
+      'Income tax returns',
+      'Bank statements',
+      'Business proof'
+    ]
+  },
+  'Education Loan': {
+    title: 'Education Loan',
+    minAmount: '₹50,000',
+    maxAmount: '₹75,00,000',
+    tenure: '180 months',
+    requiredDocuments: [
+      'Admission letter',
+      'Course fee structure',
+      'Academic records',
+      'Co-borrower documents',
+      'Collateral documents'
+    ]
+  },
+  'NRI Home Loan': {
+    title: 'NRI Home Loan',
+    minAmount: '₹10,00,000',
+    maxAmount: '₹10,00,00,000',
+    tenure: '360 months',
+    requiredDocuments: [
+      'Passport & Visa',
+      'NRE/NRO account statements',
+      'Income proof abroad',
+      'Property documents',
+      'Power of attorney'
+    ]
+  },
+  'Affordable Home Loan': {
+    title: 'Affordable Home Loan',
+    minAmount: '₹3,00,000',
+    maxAmount: '₹50,00,000',
+    tenure: '360 months',
+    requiredDocuments: [
+      'Income proof',
+      'Property documents',
+      'PMAY eligibility',
+      'Aadhaar card',
+      'Bank statements'
+    ]
+  },
+  'Home Loan Transfer': {
+    title: 'Home Loan Transfer',
+    minAmount: '₹5,00,000',
+    maxAmount: '₹5,00,00,000',
+    tenure: '360 months',
+    requiredDocuments: [
+      'Existing loan statement',
+      'Property documents',
+      'Income documents',
+      'Bank statements',
+      'NOC from current lender'
+    ]
+  },
+  'Loan Against Property': {
+    title: 'Loan Against Property',
+    minAmount: '₹10,00,000',
+    maxAmount: '₹10,00,00,000',
+    tenure: '180 months',
+    requiredDocuments: [
+      'Property documents',
+      'Income proof',
+      'Bank statements',
+      'KYC documents',
+      'Property valuation report'
+    ]
+  },
+  'Working Capital CC/OD': {
+    title: 'Working Capital CC/OD',
+    minAmount: '₹5,00,000',
+    maxAmount: '₹5,00,00,000',
+    tenure: '12 months',
+    requiredDocuments: [
+      'Business financials',
+      'Stock statements',
+      'Bank statements',
+      'GST returns',
+      'Projected cash flow'
     ]
   }
 }
+
+type LoanTypeKey = keyof typeof loanTypes
+type ApiLoanType = typeof loanTypeToApiType[LoanTypeKey]
+
+const loanTypeToApiType = {
+  'Personal Loan': 'personal',
+  'Home Loan': 'home',
+  'Business Loan': 'business',
+  'Project Loan': 'project',
+  'Loan Against Securities': 'securities',
+  'MSME Loan': 'msme',
+  'Education Loan': 'education',
+  'NRI Home Loan': 'nri',
+  'Affordable Home Loan': 'affordable',
+  'Home Loan Transfer': 'transfer',
+  'Loan Against Property': 'property',
+  'Working Capital CC/OD': 'working-capital'
+} as const
 
 const loanSteps = [
   { step: 1, label: 'Register' },
@@ -71,46 +196,78 @@ const loanSteps = [
   { step: 3, label: 'Loan Sanction' },
 ]
 
+const loansWithEmploymentType = ['Personal Loan', 'Home Loan', 'Affordable Home Loan'] as const
+
 const schema = yup.object({
   fullName: yup.string().required('Full name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
   phone: yup.string().required('Phone number is required'),
   loanAmount: yup.number().required('Loan amount is required').positive('Must be a positive number'),
-  loanType: yup.string().oneOf(['personal', 'business', 'home']).required('Loan type is required'),
-  employmentType: yup.string().oneOf(['salaried', 'business']).required('Employment type is required'),
+  loanType: yup.string().oneOf(Object.keys(loanTypes) as LoanTypeKey[]).required('Loan type is required'),
+  employmentType: yup.string().oneOf(['salaried', 'business'] as const).when('loanType', ([loanType]) => {
+    return loansWithEmploymentType.includes(loanType as typeof loansWithEmploymentType[number])
+      ? yup.string().oneOf(['salaried', 'business'] as const).required('Employment type is required')
+      : yup.string().oneOf(['salaried', 'business'] as const).notRequired()
+  }),
   monthlyIncome: yup.number().required('Monthly income is required').positive('Must be a positive number'),
 }).required()
 
 type FormData = yup.InferType<typeof schema>
 
-export default function ServiceDetails() {
+interface LoanInquiryData {
+  fullName: string
+  email: string
+  phone: string
+  loanAmount: number
+  loanType: ApiLoanType
+  employmentType: 'salaried' | 'business'
+  monthlyIncome: number
+}
+
+export default function ServiceDetails({ loanType = 'Personal Loan' }: { loanType?: LoanTypeKey }) {
   const [employmentType, setEmploymentType] = useState<'salaried' | 'business'>('salaried')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   
   const pathname = usePathname()
-  const loanType = pathname.split('/').pop() || 'personal-loan'
-  const loanDetails = loanTypes[loanType as keyof typeof loanTypes] || loanTypes['personal-loan']
+  const loanDetails = loanTypes[loanType] || loanTypes['Personal Loan']
+  const showEmploymentType = loansWithEmploymentType.includes(loanType as typeof loansWithEmploymentType[number])
 
-  const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset, getValues, setValue } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
-      loanType: loanType.replace('-loan', '') as 'personal' | 'business' | 'home',
-      employmentType: 'salaried'
+      fullName: '',
+      email: '',
+      phone: '',
+      loanAmount: 0,
+      loanType: loanType,
+      employmentType: 'salaried',
+      monthlyIncome: 0
     }
   })
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
     setError('')
-    
     try {
-      await submitLoanInquiry(data)
+      // Ensure employmentType is always defined with a valid value
+      const formData: LoanInquiryData = {
+        fullName: data.fullName,
+        email: data.email,
+        phone: data.phone,
+        loanAmount: data.loanAmount,
+        loanType: loanTypeToApiType[data.loanType as LoanTypeKey],
+        employmentType: showEmploymentType && data.employmentType ? data.employmentType : 'business',
+        monthlyIncome: data.monthlyIncome
+      }
+
+      await submitLoanInquiry(formData)
       setIsSuccess(true)
       reset()
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Failed to submit loan inquiry')
+      console.error('Error submitting loan inquiry:', error)
+      setError('Failed to submit loan inquiry. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
@@ -315,55 +472,44 @@ export default function ServiceDetails() {
               )}
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Employment Type
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setEmploymentType('salaried')
-                    reset({ ...getValues(), employmentType: 'salaried' })
-                  }}
-                  className={`p-4 text-center rounded-lg border transition-colors ${
-                    employmentType === 'salaried'
-                      ? 'bg-primary text-white border-primary'
-                      : 'border-gray-200 hover:border-primary'
-                  }`}
-                >
-                  <Image
-                    src="/salary.svg"
-                    alt="Salaried"
-                    width={24}
-                    height={24}
-                    className={`mx-auto ${employmentType === 'salaried' ? 'brightness-200' : ''}`}
-                  />
-                  <span className="block mt-2 text-sm">Salaried</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setEmploymentType('business')
-                    reset({ ...getValues(), employmentType: 'business' })
-                  }}
-                  className={`p-4 text-center rounded-lg border transition-colors ${
-                    employmentType === 'business'
-                      ? 'bg-primary text-white border-primary'
-                      : 'border-gray-200 hover:border-primary'
-                  }`}
-                >
-                  <Image
-                    src="/business.svg"
-                    alt="Business"
-                    width={24}
-                    height={24}
-                    className={`mx-auto ${employmentType === 'business' ? 'brightness-200' : ''}`}
-                  />
-                  <span className="block mt-2 text-sm">Business</span>
-                </button>
+            {showEmploymentType && (
+              <div className="space-y-4">
+                <label className="block text-sm font-medium text-gray-700">Employment Type</label>
+                <div className="flex gap-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEmploymentType('salaried')
+                      setValue('employmentType', 'salaried')
+                    }}
+                    className={`flex-1 p-4 rounded-lg border-2 ${
+                      employmentType === 'salaried'
+                        ? 'border-primary text-primary'
+                        : 'border-gray-200 text-gray-500'
+                    }`}
+                  >
+                    Salaried
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEmploymentType('business')
+                      setValue('employmentType', 'business')
+                    }}
+                    className={`flex-1 p-4 rounded-lg border-2 ${
+                      employmentType === 'business'
+                        ? 'border-primary text-primary'
+                        : 'border-gray-200 text-gray-500'
+                    }`}
+                  >
+                    Self Employed
+                  </button>
+                </div>
+                {errors.employmentType && (
+                  <p className="text-red-500 text-sm">{errors.employmentType.message}</p>
+                )}
               </div>
-            </div>
+            )}
 
             <div>
               <label htmlFor="monthlyIncome" className="block text-sm font-medium text-gray-700 mb-1">
