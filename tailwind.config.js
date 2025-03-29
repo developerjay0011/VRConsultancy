@@ -12,6 +12,7 @@ module.exports = {
         light : '#f28fbc',
         white : '#ffffff',
         white_200 : '#f28fbc',
+        white_logo:'#f9f9f9'
       },
       animation: {
         'slide-up': 'slideUp 0.5s ease-out',
