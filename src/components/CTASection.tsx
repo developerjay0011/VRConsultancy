@@ -3,45 +3,13 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'react-hot-toast'
-import {
-  ChatBubbleLeftRightIcon,
-  PhoneIcon,
-  XMarkIcon,
-  PaperAirplaneIcon,
-  MapPinIcon,
-  EnvelopeIcon,
-  ChevronDownIcon
-} from '@heroicons/react/24/outline'
-import Link from 'next/link'
+import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
 
 const contactInfo = {
   address: '109,110 SHYAM ARCADE NEAR MODI HOSPITAL, KADODARA, SURAT - 394327',
   phone: '+91 98797 99109',
   email: 'info@vrconsultancy.com'
 }
-
-const companyLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About us', href: '/about' },
-  { name: 'Blogs', href: '/blogs' },
-]
-
-const loanTypes = {
-  primary: [
-    { name: 'Business Loan', href: '/services/business-loan' },
-    { name: 'Personal Loan', href: '/services/personal-loan' },
-    { name: 'Home Loan', href: '/services/home-loan' },
-    { name: 'Loan Against Property', href: '/services/loan-against-property' },
-  ],
-  secondary: [
-  ]
-}
-
-const quickLinks = [
-  { name: 'About Us', href: '#about' },
-  { name: 'Services', href: '#services' },
-  { name: 'Contact', href: '#contact' }
-]
 
 const faqQuestions = [
   {
@@ -64,18 +32,8 @@ const faqQuestions = [
     question: 'Can I get a loan with a low CIBIL score?',
     answer: 'Yes, we have special loan options for customers with low CIBIL scores. However, interest rates may be slightly higher.'
   },
-  {
-    question: 'What is the maximum loan tenure available?',
-    answer: 'Maximum tenure varies: Personal Loans up to 5 years, Home Loans up to 30 years, and Business Loans up to 10 years.'
-  },
-  {
-    question: 'Can I prepay my loan?',
-    answer: 'Yes, you can prepay your loan. Some loans may have a minimal prepayment charge after a specified lock-in period.'
-  },
-  {
-    question: 'Do you provide doorstep service?',
-    answer: 'Yes, our representatives can visit your location for document collection and verification at no extra cost.'
-  }
+  
+  
 ]
 
 export default function CTASection() {
@@ -179,18 +137,18 @@ export default function CTASection() {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold uppercase text-white">Quick Links</h3>
               <div className="space-y-2 text-sm text-white/80">
-                <Link href="/about" className="block hover:text-white transition-colors">
+                <a href="/about" className="block hover:text-white transition-colors">
                   About Us
-                </Link>
-                <Link href="/services" className="block hover:text-white transition-colors">
+                </a>
+                <a href="/services" className="block hover:text-white transition-colors">
                   Our Services
-                </Link>
-                <Link href="/privacy-policy" className="block hover:text-white transition-colors">
+                </a>
+                <a href="/privacy-policy" className="block hover:text-white transition-colors">
                   Privacy Policy
-                </Link>
-                <Link href="/terms" className="block hover:text-white transition-colors">
+                </a>
+                <a href="/terms" className="block hover:text-white transition-colors">
                   Terms & Conditions
-                </Link>
+                </a>
               </div>
             </div>
           </div>

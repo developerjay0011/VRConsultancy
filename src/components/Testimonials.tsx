@@ -72,11 +72,11 @@ const partnerLogos = [
 ]
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+      setActiveIndex((current) => (current + 1) % testimonials.length)
     }, 5000)
 
     return () => clearInterval(interval)
@@ -108,7 +108,7 @@ export default function Testimonials() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-8"
+                className={`bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-8 ${activeIndex === index ? 'active' : ''}`}
               >
                 <div className="flex items-start mb-6">
                   <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-gray-100">

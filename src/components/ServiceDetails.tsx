@@ -2,17 +2,12 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Lottie from 'lottie-react'
 import successAnimation from '@/animations/success-animation.json'
 import { submitLoanInquiry } from '@/services/api'
-
-interface ServiceDetailsProps {
-  loanType?: keyof typeof loanTypes
-}
 
 const loanTypes = {
   'Personal Loan': {
@@ -230,11 +225,10 @@ export default function ServiceDetails({ loanType = 'Personal Loan' }: { loanTyp
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
   
-  const pathname = usePathname()
   const loanDetails = loanTypes[loanType] || loanTypes['Personal Loan']
   const showEmploymentType = loansWithEmploymentType.includes(loanType as typeof loansWithEmploymentType[number])
 
-  const { register, handleSubmit, formState: { errors }, reset, getValues, setValue } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
       fullName: '',
