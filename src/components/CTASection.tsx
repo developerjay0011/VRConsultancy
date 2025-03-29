@@ -104,7 +104,7 @@ export default function CTASection() {
     setSubmitStatus({ type: null, message: '' })
 
     try {
-      const response = await fetch('http://localhost:5001/api/contacts', {
+      const response = await fetch('https://api.myvrloan.com/api/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
