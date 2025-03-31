@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation'
 import CTASection from '@/components/CTASection'
 import Image from 'next/image'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
-import { StarIcon } from '@heroicons/react/24/solid'
+// import { StarIcon } from '@heroicons/react/24/solid'
 
 const values = [
   {
@@ -56,29 +56,29 @@ const milestones = [
   },
 ]
 
-const reviews = [
-  {
-    name: 'Nagendra Reddy',
-    image: '/customer1.jpg',
-    rating: 5,
-    type: 'Instant Loan',
-    review: 'Awesome service provided by Prefr. Loan disbursements in just one day. Overall fast process. Executives are very responsive and managed entire process well.'
-  },
-  {
-    name: 'Rajesh Kumar',
-    image: '/customer2.jpg',
-    rating: 5,
-    type: 'Personal Loan',
-    review: 'Great experience with VR Consultancy. The team helped me get a personal loan at the best interest rate. Very professional service.'
-  },
-  {
-    name: 'Priya Sharma',
-    image: '/customer3.jpg',
-    rating: 5,
-    type: 'Business Loan',
-    review: 'Excellent support throughout the loan process. Quick approval and disbursement. Highly recommend their services to everyone.'
-  }
-]
+// const reviews = [
+//   {
+//     name: 'Nagendra Reddy',
+//     image: '/customer1.jpg',
+//     rating: 5,
+//     type: 'Instant Loan',
+//     review: 'Awesome service provided by Prefr. Loan disbursements in just one day. Overall fast process. Executives are very responsive and managed entire process well.'
+//   },
+//   {
+//     name: 'Rajesh Kumar',
+//     image: '/customer2.jpg',
+//     rating: 5,
+//     type: 'Personal Loan',
+//     review: 'Great experience with VR Consultancy. The team helped me get a personal loan at the best interest rate. Very professional service.'
+//   },
+//   {
+//     name: 'Priya Sharma',
+//     image: '/customer3.jpg',
+//     rating: 5,
+//     type: 'Business Loan',
+//     review: 'Excellent support throughout the loan process. Quick approval and disbursement. Highly recommend their services to everyone.'
+//   }
+// ]
 
 export default function AboutPage() {
   return (

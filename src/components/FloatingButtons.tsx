@@ -89,7 +89,7 @@ export default function FloatingButtons() {
       initial="initial"
       animate="animate"
     >
-      {socialLinks.map((social, index) => (
+      {socialLinks.map((social) => (
         <motion.a
           key={social.name}
           href={social.link}

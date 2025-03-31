@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+// import { motion } from 'framer-motion'
+// import Image from 'next/image'
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),
@@ -46,8 +46,8 @@ export default function LoanInquiryForm() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-    watch
+    setValue
+    // watch
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {

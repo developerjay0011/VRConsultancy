@@ -1,6 +1,6 @@
 "use client"
 
-import ServiceDetails from '@/components/ServiceDetails'
+// import ServiceDetails from '@/components/ServiceDetails'
 import dynamic from 'next/dynamic'
 import EligibilitySection from '@/components/EligibilitySection'
 

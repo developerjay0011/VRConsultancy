@@ -81,7 +81,7 @@ export default function EligibilitySection() {
         </div>
         
         <div className="grid grid-cols-1 gap-4">
-          {eligibilityCriteria.map((item, index) => (
+          {eligibilityCriteria.map((item) => (
             <motion.div
               key={item.title}
               variants={itemVariants}
@@ -119,7 +119,7 @@ export default function EligibilitySection() {
         </div>
         
         <div className="grid grid-cols-1 gap-4">
-          {requiredDocuments.map((doc, index) => (
+          {requiredDocuments.map((doc) => (
             <motion.div
               key={doc.title}
               variants={itemVariants}
