@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import loanHeroAnimation from '../../public/animations/Animation.json'
+import Link from 'next/link'
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 
@@ -106,6 +107,8 @@ export default function HeroSection() {
             </motion.div>
 
             <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+             href="/loan-inquiry" className="block">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -119,6 +122,7 @@ export default function HeroSection() {
                   transition={{ duration: 0.5 }}
                 />
               </motion.button>
+              </Link>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

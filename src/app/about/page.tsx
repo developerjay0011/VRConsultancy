@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation'
 import CTASection from '@/components/CTASection'
 import Image from 'next/image'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { StarIcon } from '@heroicons/react/24/solid'
 
 const values = [
   {
@@ -30,6 +31,53 @@ const stats = [
   { number: '₹500Cr+', label: 'Loans Disbursed' },
   { number: '15+', label: 'Banking Partners' },
   { number: '4.8/5', label: 'Customer Rating' },
+]
+
+const milestones = [
+  {
+    year: '2018',
+    title: 'Foundation',
+    description: 'VR Consultancy was established with a vision to revolutionize lending.',
+  },
+  {
+    year: '2020',
+    title: 'Digital Transformation',
+    description: 'Launched our digital platform for seamless loan processing.',
+  },
+  {
+    year: '2022',
+    title: 'Market Leadership',
+    description: 'Became one of the leading loan consultants in the region.',
+  },
+  {
+    year: '2024',
+    title: 'Innovation & Growth',
+    description: 'Expanded services and introduced AI-powered loan assessment.',
+  },
+]
+
+const reviews = [
+  {
+    name: 'Nagendra Reddy',
+    image: '/customer1.jpg',
+    rating: 5,
+    type: 'Instant Loan',
+    review: 'Awesome service provided by Prefr. Loan disbursements in just one day. Overall fast process. Executives are very responsive and managed entire process well.'
+  },
+  {
+    name: 'Rajesh Kumar',
+    image: '/customer2.jpg',
+    rating: 5,
+    type: 'Personal Loan',
+    review: 'Great experience with VR Consultancy. The team helped me get a personal loan at the best interest rate. Very professional service.'
+  },
+  {
+    name: 'Priya Sharma',
+    image: '/customer3.jpg',
+    rating: 5,
+    type: 'Business Loan',
+    review: 'Excellent support throughout the loan process. Quick approval and disbursement. Highly recommend their services to everyone.'
+  }
 ]
 
 export default function AboutPage() {
@@ -169,7 +217,76 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Customer Reviews Section */}
+      {/* <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold text-gray-900 mb-4"
+            >
+              What Our Customers Say
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-gray-600"
+            >
+              Don&apos;t just take our word for it - hear from our satisfied customers
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {reviews.map((review, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-6 shadow-lg"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="relative w-12 h-12">
+                    <Image
+                      src={review.image}
+                      alt={review.name}
+                      fill
+                      className="rounded-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">{review.name}</h3>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-2 mb-2">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    <span className="mr-1.5">✓</span>
+                    {review.type}
+                  </span>
+                </div>
+
+                <p className="text-gray-600 leading-relaxed">
+                  {review.review}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
+      {/* Our Journey Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -179,7 +296,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="text-3xl font-bold text-gray-900 mb-4"
             >
-              Leadership Team
+              Our Journey
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -188,30 +305,28 @@ export default function AboutPage() {
               transition={{ delay: 0.2 }}
               className="text-gray-600"
             >
-              We&apos;re proud to have helped thousands of individuals and businesses achieve their financial goals.
+              A timeline of our growth and achievements in revolutionizing the lending industry
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((_, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {milestones.map((milestone, index) => (
               <motion.div
-                key={index}
+                key={milestone.year}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                className="relative"
               >
-                <div className="relative w-48 h-48 mx-auto mb-4">
-                  <Image
-                    src={`/team-member-${index + 1}.jpg`}
-                    alt={`Team Member ${index + 1}`}
-                    fill
-                    className="rounded-full object-cover"
-                  />
+                <div className="bg-white p-6 rounded-lg shadow-lg border-t-4 border-primary h-full">
+                  <div className="text-primary text-2xl font-bold mb-3">{milestone.year}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{milestone.title}</h3>
+                  <p className="text-gray-600">{milestone.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">Name</h3>
-                <p className="text-gray-600">Position</p>
+                {index < milestones.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-primary"></div>
+                )}
               </motion.div>
             ))}
           </div>

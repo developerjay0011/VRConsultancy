@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from 'react'
-import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import Lottie from 'lottie-react'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 import successAnimation from '@/animations/success-animation.json'
 import { submitLoanInquiry } from '@/services/api'
 

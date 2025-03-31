@@ -7,32 +7,32 @@ const features = [
   {
     name: 'Fast Disbursal',
     description: 'Get your loan amount disbursed within 24-48 hours after approval. Our streamlined process ensures quick access to funds when you need them.',
-    icon: '/icons/money.svg'
+    icon: '/icons/fast-disbursal.svg'
   },
   {
     name: 'Minimal Documentation',
     description: 'Simple documentation requirements with digital KYC process. Upload documents online and get quick verification.',
-    icon: '/icons/document-check.svg'
+    icon: '/icons/document.svg'
   },
   {
     name: 'Competitive Interest Rates',
     description: 'Access loans at competitive interest rates starting from 10.75%* p.a. with flexible repayment options of up to 5 years.',
-    icon: '/icons/chart-line.svg'
+    icon: '/icons/percentage.svg'
   },
   {
     name: 'No Hidden Charges',
     description: 'Complete transparency in all our processes. No hidden charges or processing fees. What you see is what you pay.',
-    icon: '/icons/document.svg'
+    icon: '/icons/shield.svg'
   },
   {
     name: 'Expert Guidance',
     description: 'Our experienced loan advisors help you choose the right loan product and guide you through the entire process.',
-    icon: '/icons/business.svg'
+    icon: '/icons/customer-service.svg'
   },
   {
     name: 'Digital Process',
     description: '100% paperless process with end-to-end digital journey. Apply, upload documents, and track your application online.',
-    icon: '/icons/salary.svg'
+    icon: '/icons/digital.svg'
   }
 ]
 

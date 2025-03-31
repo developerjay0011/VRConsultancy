@@ -3,12 +3,13 @@ import { Inter } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import './globals.css'
 import Navigation from '@/components/Navigation'
+import FloatingButtons from '@/components/FloatingButtons'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Quick Loan Services',
-  description: 'Get instant personal loans, business loans, and more with competitive interest rates and minimal documentation.',
+  title: 'VR Consultancy - Your Trusted Loan Partner',
+  description: 'Get hassle-free loans with VR Consultancy. Personal loans, business loans, and more with quick approval and competitive rates.',
 }
 
 export default function RootLayout({
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navigation />
         {children}
+        <FloatingButtons />
         <Toaster 
           position="top-right"
           toastOptions={{
