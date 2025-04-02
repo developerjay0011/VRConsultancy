@@ -1,11 +1,10 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-// import { motion } from 'framer-motion'
-// import Image from 'next/image'
+import toast from 'react-hot-toast'
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),
@@ -15,6 +14,19 @@ const schema = yup.object({
   email: yup.string()
     .email('Enter a valid email')
     .required('Email is required'),
+  dob: yup.string()
+    .required('Date of Birth is required')
+    .test('age', 'You must be at least 21 years old', (value) => {
+      if (!value) return false
+      const dob = new Date(value)
+      const today = new Date()
+      const age = today.getFullYear() - dob.getFullYear()
+      const monthDiff = today.getMonth() - dob.getMonth()
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        return age - 1 >= 21
+      }
+      return age >= 21
+    }),
   pan: yup.string()
     .matches(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Enter a valid PAN number')
     .required('PAN number is required'),
@@ -32,22 +44,66 @@ const schema = yup.object({
     .min(50000, 'Loan amount must be at least ₹50,000')
     .max(500000, 'Loan amount cannot exceed ₹5,00,000')
     .required('Loan amount is required'),
-  loanPurpose: yup.string().required('Loan purpose is required')
+  loanPurpose: yup.string().required('Loan purpose is required'),
+  termsAccepted: yup.boolean()
+    .oneOf([true], 'You must accept the terms and conditions')
+    .required('You must accept the terms and conditions')
 }).required()
 
 type FormData = yup.InferType<typeof schema>
+
+const indianStates = [
+  'Andaman and Nicobar Islands',
+  'Andhra Pradesh',
+  'Arunachal Pradesh',
+  'Assam',
+  'Bihar',
+  'Chandigarh',
+  'Chhattisgarh',
+  'Dadra and Nagar Haveli and Daman and Diu',
+  'Delhi',
+  'Goa',
+  'Gujarat',
+  'Haryana',
+  'Himachal Pradesh',
+  'Jammu and Kashmir',
+  'Jharkhand',
+  'Karnataka',
+  'Kerala',
+  'Ladakh',
+  'Lakshadweep',
+  'Madhya Pradesh',
+  'Maharashtra',
+  'Manipur',
+  'Meghalaya',
+  'Mizoram',
+  'Nagaland',
+  'Odisha',
+  'Puducherry',
+  'Punjab',
+  'Rajasthan',
+  'Sikkim',
+  'Tamil Nadu',
+  'Telangana',
+  'Tripura',
+  'Uttar Pradesh',
+  'Uttarakhand',
+  'West Bengal'
+].sort()
 
 export default function LoanInquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedIncomeType, setSelectedIncomeType] = useState<'salary' | 'business'>('salary')
   const [sliderValue, setSliderValue] = useState(50000)
+  const [isLoadingPincode, setIsLoadingPincode] = useState(false)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
-    // watch
+    setValue,
+    watch,
+    reset
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -55,13 +111,69 @@ export default function LoanInquiryForm() {
     }
   })
 
+  const pincode = watch('pincode')
+
+  useEffect(() => {
+    const fetchPincodeDetails = async () => {
+      if (pincode?.length === 6) {
+        setIsLoadingPincode(true)
+        try {
+          const response = await fetch(`https://api.postalpincode.in/pincode/${pincode}`)
+          const data = await response.json()
+          
+          if (data[0].Status === 'Success') {
+            const postOffice = data[0].PostOffice[0]
+            setValue('state', postOffice.State)
+            setValue('city', postOffice.District)
+          }
+        } catch (error) {
+          console.error('Error fetching pincode details:', error)
+        } finally {
+          setIsLoadingPincode(false)
+        }
+      }
+    }
+
+    fetchPincodeDetails()
+  }, [pincode, setValue])
+
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
     try {
-      console.log(data)
-      // Add your form submission logic here
+      console.log("data", data)
+      const response = await fetch('http://localhost:5001/api/loans', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        
+        body: JSON.stringify({
+          ...data,
+          monthlyIncome: parseFloat(data.monthlyIncome.toString()),
+          loanAmount: sliderValue
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit loan application')
+      }
+
+      // Show success message
+      toast.success('Application submitted successfully!', {
+        position: 'top-right',
+        duration: 5000
+      })
+
+      // Reset form
+      reset()
+      setSliderValue(50000)
+      setSelectedIncomeType('salary')
     } catch (error) {
-      console.error('Error:', error)
+      console.error('Error submitting loan application:', error)
+      toast.error('Failed to submit loan application. Please try again.', {
+        position: 'top-right',
+        duration: 5000
+      })
     } finally {
       setIsSubmitting(false)
     }
@@ -104,6 +216,18 @@ export default function LoanInquiryForm() {
               {errors.mobile && <p className="mt-1 text-sm text-red-600">{errors.mobile.message}</p>}
             </div>
 
+            {/* Date of Birth */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+              <input
+                type="date"
+                {...register('dob')}
+                max={new Date().toISOString().split('T')[0]}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#5A0028] focus:border-transparent"
+              />
+              {errors.dob && <p className="mt-1 text-sm text-red-600">{errors.dob.message}</p>}
+            </div>
+
             {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Email ID</label>
@@ -129,17 +253,36 @@ export default function LoanInquiryForm() {
               {errors.pan && <p className="mt-1 text-sm text-red-600">{errors.pan.message}</p>}
             </div>
 
+            {/* Pincode */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Pincode</label>
+              <div className="relative">
+                <input
+                  type="text"
+                  {...register('pincode')}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#5A0028] focus:border-transparent"
+                  placeholder="Enter 6-digit pincode"
+                  maxLength={6}
+                />
+                {isLoadingPincode && (
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-[#5A0028] border-t-transparent"></div>
+                  </div>
+                )}
+              </div>
+              {errors.pincode && <p className="mt-1 text-sm text-red-600">{errors.pincode.message}</p>}
+            </div>
+
             {/* State */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
-              <select
+              <input
+                type="text"
                 {...register('state')}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#5A0028] focus:border-transparent"
-              >
-                <option value="">Select State</option>
-                <option value="Gujarat">Gujarat</option>
-                {/* Add more states */}
-              </select>
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#5A0028] focus:border-transparent bg-gray-50"
+                placeholder="State will auto-fill"
+                readOnly
+              />
               {errors.state && <p className="mt-1 text-sm text-red-600">{errors.state.message}</p>}
             </div>
 
@@ -149,23 +292,11 @@ export default function LoanInquiryForm() {
               <input
                 type="text"
                 {...register('city')}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#5A0028] focus:border-transparent"
-                placeholder="Enter your city"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#5A0028] focus:border-transparent bg-gray-50"
+                placeholder="City will auto-fill"
+                readOnly
               />
               {errors.city && <p className="mt-1 text-sm text-red-600">{errors.city.message}</p>}
-            </div>
-
-            {/* Pincode */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Pincode</label>
-              <input
-                type="text"
-                {...register('pincode')}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#5A0028] focus:border-transparent"
-                placeholder="Enter 6-digit pincode"
-                maxLength={6}
-              />
-              {errors.pincode && <p className="mt-1 text-sm text-red-600">{errors.pincode.message}</p>}
             </div>
 
             {/* Income Type */}
@@ -267,6 +398,31 @@ export default function LoanInquiryForm() {
               <span>₹50,000</span>
               <span>₹5,00,000</span>
             </div>
+          </div>
+
+          {/* Terms and Conditions */}
+          <div className="mt-6">
+            <label className="flex items-start">
+              <input
+                type="checkbox"
+                {...register('termsAccepted')}
+                className="mt-1 h-4 w-4 text-[#5A0028] border-gray-300 rounded focus:ring-[#5A0028]"
+              />
+              <span className="ml-3 text-sm text-gray-600">
+                I agree to the{' '}
+                <a href="#" className="text-[#5A0028] hover:underline">
+                  Terms and Conditions
+                </a>{' '}
+                and{' '}
+                <a href="#" className="text-[#5A0028] hover:underline">
+                  Privacy Policy
+                </a>
+                . I understand that my data will be used in accordance with the privacy policy.
+              </span>
+            </label>
+            {errors.termsAccepted && (
+              <p className="mt-1 text-sm text-red-600">{errors.termsAccepted.message}</p>
+            )}
           </div>
 
           <div className="mt-8">
