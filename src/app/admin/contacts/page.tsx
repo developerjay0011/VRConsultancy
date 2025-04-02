@@ -29,7 +29,7 @@ export default function ContactsPage() {
           return
         }
 
-        const response = await fetch('http://localhost:5000/api/contacts', {
+        const response = await fetch('https://api.myvrloan.com/api/contacts', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

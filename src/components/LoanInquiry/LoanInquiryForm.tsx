@@ -103,7 +103,7 @@ export default function LoanInquiryForm() {
     setIsSubmitting(true)
     try {
       console.log("data", data)
-      const response = await fetch('http://localhost:5001/api/loans', {
+      const response = await fetch('https://api.myvrloan.com/api/loans', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
