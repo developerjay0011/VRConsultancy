@@ -8,7 +8,7 @@ import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline
 const contactInfo = {
   address: '109,110 SHYAM ARCADE NEAR MODI HOSPITAL, KADODARA, SURAT - 394327',
   phone: '+91 98797 99109',
-  email: 'info@vrconsultancy.com'
+  email: 'support@myvrloan.com'
 }
 
 const faqQuestions = [
