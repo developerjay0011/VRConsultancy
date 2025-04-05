@@ -5,6 +5,10 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import toast from 'react-hot-toast'
+import dynamic from 'next/dynamic'
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
+import successAnimation from '@/animations/success-animation.json'
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),
@@ -58,6 +62,7 @@ export default function LoanInquiryForm() {
   const [selectedIncomeType, setSelectedIncomeType] = useState<'salary' | 'business'>('salary')
   const [sliderValue, setSliderValue] = useState(50000)
   const [isLoadingPincode, setIsLoadingPincode] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
 
   const {
     register,
@@ -120,13 +125,7 @@ export default function LoanInquiryForm() {
         throw new Error('Failed to submit loan application')
       }
 
-      // Show success message
-      toast.success('Application submitted successfully!', {
-        position: 'top-right',
-        duration: 5000
-      })
-
-      // Reset form
+      setIsSuccess(true)
       reset()
       setSliderValue(50000)
       setSelectedIncomeType('salary')
@@ -145,6 +144,28 @@ export default function LoanInquiryForm() {
     const value = parseInt(e.target.value)
     setSliderValue(value)
     setValue('loanAmount', value)
+  }
+
+  if (isSuccess) {
+    return (
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+        <div className="p-8">
+          <div className="max-w-md mx-auto text-center">
+            <Lottie animationData={successAnimation} className="w-48 h-48 mx-auto" />
+            <h2 className="text-2xl font-bold text-[#5A0028] mt-4">Thank You!</h2>
+            <p className="text-gray-600 mt-2">
+              Your loan application has been submitted successfully. Our team will review it and contact you shortly.
+            </p>
+            <button
+              onClick={() => setIsSuccess(false)}
+              className="mt-6 px-6 py-2 bg-[#5A0028] text-white rounded-lg hover:bg-[#5A0028]/90 transition-colors"
+            >
+              Submit Another Application
+            </button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
